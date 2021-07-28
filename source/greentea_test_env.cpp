@@ -104,12 +104,12 @@ void GREENTEA_TESTSUITE_RESULT(const int result)
     greentea_notify_completion(result);
 }
 
-void GREENTEA_TESTCASE_START(const char *test_case_name)
+extern "C" void GREENTEA_TESTCASE_START(const char *test_case_name)
 {
     greentea_send_kv(GREENTEA_TEST_ENV_TESTCASE_START, test_case_name);
 }
 
-void GREENTEA_TESTCASE_FINISH(const char *test_case_name, const size_t passes, const size_t failed)
+extern "C" void GREENTEA_TESTCASE_FINISH(const char *test_case_name, const size_t passes, const size_t failed)
 {
     greentea_send_kv(GREENTEA_TEST_ENV_TESTCASE_FINISH, test_case_name, passes, failed);
 }

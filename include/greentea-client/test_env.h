@@ -21,7 +21,6 @@
 #include <stddef.h>
 #include "greentea-client/test_io.h"
 
-#ifdef __cplusplus
 #define GREENTEA_CLIENT_VERSION_STRING "1.3.0"
 
 /**
@@ -112,22 +111,7 @@ void GREENTEA_TESTSUITE_RESULT(const int result);
  *  Test Case support
  */
 
-/**
- * Notify the host side that a test case started.
- *
- * @param test_case_name Test case name
- */
-void GREENTEA_TESTCASE_START(const char *test_case_name);
-
-/**
- * Notify the host side that a test case finished.
- *
- * @param test_case_name Test case name
- * @param passes Number of test passes
- * @param failures Number of test failures
- */
-void GREENTEA_TESTCASE_FINISH(const char *test_case_name, const size_t passes, const size_t failures);
-
+#ifdef __cplusplus
 /**
  *  Test suite result related notification API
  */
@@ -218,6 +202,22 @@ extern "C" {
 /**
  *  Greentea-client C API
  */
+
+/**
+ * Notify the host side that a test case started.
+ *
+ * @param test_case_name Test case name
+ */
+void GREENTEA_TESTCASE_START(const char *test_case_name);
+
+/**
+ * Notify the host side that a test case finished.
+ *
+ * @param test_case_name Test case name
+ * @param passes Number of test passes
+ * @param failures Number of test failures
+ */
+void GREENTEA_TESTCASE_FINISH(const char *test_case_name, const size_t passes, const size_t failures);
 
 /**
  * Handshake with the host and send setup data
