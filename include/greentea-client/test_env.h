@@ -62,6 +62,22 @@
         GREENTEA_TESTCASE_START(#name); \
     } while (0)
 
+#define GREENTEA_TEST(name) \
+    NOMANGLE static const char name[] GREENTEA_SECTION = #name; \
+    NOMANGLE static int #name(void)
+
+/* If we wanted to rewrite unity... */
+GREENTEA_TEST(OnePlusOneIsTwo)
+{
+    GREENTEA_ASSERT(1 + 1, 2);
+}
+
+/* Unity style */
+void test_OnePlusOneIsTwo(void)
+{
+    TEST_EQUAL(1 + 1, 2);
+}
+
 #define GREENTEA_FINISH(name, passes, failures) \
     do { \
         GREENTEA_TESTCASE_FINISH(#name, passes, failures); \
