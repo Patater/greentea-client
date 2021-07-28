@@ -90,6 +90,7 @@ option(BUILD_EXAMPLES "Enable building the examples" ON)
 if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) AND BUILD_EXAMPLES)
     add_subdirectory(examples/stdio)
     add_subdirectory(examples/custom_io)
+    add_subdirectory(examples/discovery)
     add_subdirectory(examples/pty)
 endif()
 

@@ -42,6 +42,32 @@
 #define TEST_ENV_TESTCASE_SUMMARY   GREENTEA_TEST_ENV_TESTCASE_SUMMARY
 
 /**
+ * Public Greentea entry points
+ */
+#if defined(__APPLE__) && defined(__MACH__)
+#  define GREENTEA_SECTION __attribute__((section("__GREENTEA,__greentea")))
+#else
+#  define GREENTEA_SECTION __attribute__((section(".greentea")))
+#endif
+
+#ifdef __cplusplus
+#  define NOMANGLE extern "C"
+#else
+#  define NOMANGLE
+#endif
+
+#define GREENTEA_START(name) \
+    do { \
+        NOMANGLE static const char name[] GREENTEA_SECTION = #name; \
+        GREENTEA_TESTCASE_START(#name); \
+    } while (0)
+
+#define GREENTEA_FINISH(name, passes, failures) \
+    do { \
+        GREENTEA_TESTCASE_FINISH(#name, passes, failures); \
+    } while (0)
+
+/**
  *  Default length for UUID buffers (used during the sync process)
  */
 #define GREENTEA_UUID_LENGTH        48
